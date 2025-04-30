@@ -24,6 +24,7 @@ body {
     main {
       flex: 1;
       padding: 20px;
+      padding-top: 70px;
     }
     
     /* FOOTER */
@@ -131,7 +132,6 @@ body {
   background-color: darkcyan;
   height: 100vh;
   margin: 0;
-  padding: 0;
 }
 
 /* Sections de démonstration */
