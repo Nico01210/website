@@ -12,7 +12,7 @@
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 20px;
-        max-width: 300px;
+        max-width: 800px;
         font-family: Arial, sans-serif;
         box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         text-align: center;
@@ -20,10 +20,12 @@
         background-color: gray;
       }
       .carte-meteo img {
-        width: 1000px;
-        height: 300px;
+        width: 600px;
+        height: 600px;
       }
       #resultat {
+        display: flex;
+        justify-content: center;
         text-align: center;
         margin-top: 20px;
       }
@@ -34,7 +36,7 @@
     #feed {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 40px;
     }
     .post {
       background: white;
@@ -83,19 +85,25 @@
     <img src="images/dev.jpeg" alt="Photo de dev" width=50% height=600px />
   
     <section>
+      <div class="conteneur-feed-meteo">
       <div class="container">
         <h2>Mur de Posts</h2>
         <button id="actualiserBtn">Actualiser</button>
-        <div id="feed"></div>
-      <div id="feed"></div>
-     </body>
-     <h1 class="titre-centre">Météo de Genève</h1>
-  
-     <div id="resultat">Chargement...</div>
-     <div style="text-align:center; margin-top: 30px;">
-      <input type="text" id="ville-input" placeholder="Entrez une ville" />
-      <button onclick="demanderMeteo()">Afficher la météo</button>
-     </div>
+          <div id="feed"></div>
+          </div>
+
+          <div id="resultat">
+            <div class="carte-meteo">
+              <img src="IMAGE_MÉTÉO" alt="Météo actuelle" />
+              <div class="meteo-inputs">
+                <input type="text" id="ville-input" placeholder="Entrez une ville" />
+                <button onclick="demanderMeteo()">Afficher la météo</button>
+              </div>
+            </div>
+          </div>
+    
+        
+      </div>
     </section>
    
   </div>
