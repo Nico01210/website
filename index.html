@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="fr">
 <html>
 
   <head>
@@ -26,6 +27,40 @@
         text-align: center;
         margin-top: 20px;
       }
+      body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #feed {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .post {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .post h2 {
+      margin: 0 0 10px;
+    }
+    .post p {
+      margin: 0;
+    }
+    #refreshBtn {
+      padding: 10px, 20px;
+      font-weight: bold;
+      background: #0099cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #refreshBtn:hover {
+      background: #0077aa;
+    }
     </style>
   </head>
 
@@ -47,15 +82,24 @@
 
     <img src="images/dev.jpeg" alt="Photo de dev" width=50% height=600px />
   
-    
-    <h1 class="titre-centre">Météo de Genève</h1>
+    <section>
+      <div class="container">
+        <h2>Mur de Posts</h2>
+        <button id="actualiserBtn">Actualiser</button>
+        <div id="feed"></div>
+      <div id="feed"></div>
+     </body>
+     <h1 class="titre-centre">Météo de Genève</h1>
   
-    <div id="resultat">Chargement...</div>
-    <div style="text-align:center; margin-top: 30px;">
+     <div id="resultat">Chargement...</div>
+     <div style="text-align:center; margin-top: 30px;">
       <input type="text" id="ville-input" placeholder="Entrez une ville" />
       <button onclick="demanderMeteo()">Afficher la météo</button>
-    </div>
-      
+     </div>
+    </section>
+   
+  </div>
+
       <section id="gallery">
         <h1>Gallery</h1>
 
