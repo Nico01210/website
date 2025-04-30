@@ -6,8 +6,26 @@
 <title>My Web Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
     <style>
+      .carte-meteo {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 300px;
+        font-family: Arial, sans-serif;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        text-align: center;
+        margin: 20px auto;
+        background-color: #f9f9f9;
+      }
+      .carte-meteo img {
+        width: 64px;
+        height: 64px;
+      }
+      #resultat {
+        text-align: center;
+        margin-top: 20px;
+      }
     </style>
   </head>
 
@@ -17,20 +35,22 @@
         <div class="nav-container">
           <a href="#" class="logo">MonSite</a>
           <ul class="nav-links">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#jeux">Jeux</a></li>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="Jeux.html">Jeux</a></li>
           </ul>
         </div>
       </nav>
     </header>
 
     <h1> Bienvenue </h1>
-   
-      <section id="accueil">
-        <h1>Accueil</h1>
-        <p>Contenu de la page d'accueil...</p>
-      </section>
+
+    <img src="images/dev.jpeg" alt="Photo de dev" width=50% height=600px />
+  
+    
+    <h1 class="titre-centre">Météo de Genève</h1>
+  
+    <div id="resultat">Chargement...</div>
       
       <section id="gallery">
         <h1>Gallery</h1>
@@ -42,6 +62,7 @@
         <p>Contenu des jeux...</p>
       </section>
 
+      
 
 
 
@@ -53,14 +74,6 @@
 
 
 
-
-
-
-
-    <main>
-      <h1>Bienvenue sur mon site</h1>
-      <p>Ceci est le contenu principal de la page.</p>
-    </main>
   
     <footer>
       <div class="footer-container">
@@ -93,6 +106,7 @@
         © 2025 MonSite. Tous droits réservés.
       </div>
     </footer>
+    <script src="script.js"></script>
 
   </body>
 
