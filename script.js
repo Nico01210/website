@@ -1,48 +1,46 @@
-const API_KEY = 'aqBQTina7u7FJhmA9HBnufH1u5XJtHXY'; // Ta clé AccuWeather
-const ville = 'Genève';
+const API_KEY = '52a6d0f520627aae9ba0ad684bd3b555';
 
-function afficherMeteo() {
-  const urlLocation = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${API_KEY}&q=${ville}`;
+function afficherMeteo(ville) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=${API_KEY}&units=metric&lang=fr`;
 
-  fetch(urlLocation)
+  fetch(url)
     .then(response => response.json())
     .then(data => {
-      if (data.length > 0) {
-        const locationKey = data[0].Key;
-        const villeNom = data[0].LocalizedName;
+      console.log("Réponse API :", data);
 
-        // Étape 2 : récupérer les conditions météo
-        const urlMeteo = `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&language=fr-fr&details=true`;
+      if (data.cod === 200) {
+        const temp = data.main.temp;
+        const desc = data.weather[0].description;
+        const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 
-        fetch(urlMeteo)
-          .then(response => response.json())
-          .then(data => {
-            if (data.length > 0) {
-              const temp = data[0].Temperature.Metric.Value;
-              const desc = data[0].WeatherText;
-              const iconNumber = data[0].WeatherIcon.toString().padStart(2, '0'); // format 01, 02...
-              const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconNumber}-s.png`;
-
-              document.getElementById("resultat").innerHTML = `
-                <div class="carte-meteo">
-                  <h2>${villeNom}</h2>
-                  <img src="${iconUrl}" alt="${desc}" />
-                  <p><strong>${temp}°C</strong></p>
-                  <p>${desc}</p>
-                </div>
-              `;
-            } else {
-              document.getElementById("resultat").textContent = "Données météo non disponibles.";
-            }
-          });
+        document.getElementById("resultat").innerHTML = `
+          <div class="carte-meteo">
+            <h2>${ville}</h2>
+            <img src="${icon}" alt="${desc}" />
+            <p><strong>${temp}°C</strong></p>
+            <p>${desc.charAt(0).toUpperCase() + desc.slice(1)}</p>
+          </div>
+        `;
       } else {
-        document.getElementById("resultat").textContent = "Ville non trouvée.";
+        document.getElementById("resultat").textContent =
+          "Ville inconnue ou erreur : " + data.message;
       }
     })
     .catch(error => {
-      console.error("Erreur :", error);
-      document.getElementById("resultat").textContent = "Erreur lors de la récupération des données météo.";
+      console.error("Erreur réseau :", error);
+      document.getElementById("resultat").textContent = "Erreur de connexion à l'API.";
     });
 }
 
-window.onload = afficherMeteo;
+// Fonction appelée par le bouton
+function demanderMeteo() {
+  const ville = document.getElementById("ville-input").value.trim();
+  if (ville !== "") {
+    afficherMeteo(ville);
+  } else {
+    alert("Veuillez entrer un nom de ville.");
+  }
+}
+
+// Affiche Genève par défaut au chargement
+window.onload = () => afficherMeteo("Genève");
