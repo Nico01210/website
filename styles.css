@@ -128,6 +128,7 @@ body {
 /* Pour éviter que le contenu passe sous la navbar */
 body {
   padding-top: 70px;
+  background-color: darkcyan;
 }
 
 /* Sections de démonstration */
@@ -150,4 +151,14 @@ h1 {
   height: auto;
   margin: 0 auto;
   display: block;
+}
+.galerie-images img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+.galerie-images {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* espace entre les images */
+  flex-wrap: wrap; /* les images passent à la ligne sur petit écran */
 }
