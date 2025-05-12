@@ -1,20 +1,5 @@
-function demanderMeteo() {
-    const ville = document.getElementById('ville-input').value || 'Genève';
-    const resultat = document.getElementById('resultat');
-  
-    // wttr.in propose une version PNG directement affichable sans CORS
-    const imageUrl = `https://wttr.in/${ville}_0tqp_lang=fr.png`;
-  
-    const meteoHTML = `
-      <div class="carte-meteo">
-        <h2>Météo à ${ville}</h2>
-        <img src="${imageUrl}" alt="Météo de ${ville}">
-      </div>
-    `;
-  
-    resultat.innerHTML = meteoHTML;
-  }
-  
+
+
   // Données de mock pour les articles météo
   const exemplesArticles = [
     { titre: "Chaleur record à Marseille", contenu: "Aujourd'hui, la ville a battu son record de température." },
@@ -38,7 +23,7 @@ function demanderMeteo() {
       const post = document.createElement('div');
       post.className = 'post';
       post.innerHTML = `
-        <h2>${article.titre}</h2>
+        <h2 style="text-align:center;">${article.titre}</h2>
         <p>${article.contenu}</p>
       `;
       feed.appendChild(post);
@@ -50,3 +35,23 @@ function demanderMeteo() {
   
   // Lancer une première génération d’articles au chargement de la page
   window.onload = genererArticles;
+
+  /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}

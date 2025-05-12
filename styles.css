@@ -147,13 +147,13 @@ img {
 }
 h1 {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: center;  max-width: 100%;
+
+  margin-top: 40px;
 }
 .carte-meteo img {
-  width: 120px;
-  max-width: 100%;
-  height: auto;
+  width: 400px;
+  height: 400px;
   margin: 0 auto;
   display: block;
 }
@@ -186,7 +186,7 @@ h1 {
 h2 {
   font-size: 25px;
   display: flex;
-  margin-left: 280px;
+  margin-left: 220px;
 }
 .container {
   width: 80%;
@@ -204,7 +204,10 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
+#actualiserBtn {
+  display: flex;
+  margin-left: 250px;
+}
 button:hover {
   background-color: #0056b3;
 }
@@ -217,14 +220,70 @@ button:hover {
   width: 100%;
 }
 
-.container {
-  flex: 2;
-  max-width: 800px;
-}
-
 #resultat {
   flex: 1;
   max-width: 350px;
   display: flex;
   justify-content: center;
+  width: auto;
 }
+
+.post {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.post h2 {
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.dropbtn {
+  display: flex;
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  justify-content: flex-end;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 1000px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
