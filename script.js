@@ -55,3 +55,22 @@ window.onclick = function(event) {
     }
   }
 }
+  const form = document.getElementById('postForm');
+  const feed = document.getElementById('feed');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    const title = document.getElementById('title').value.trim();
+    const content = document.getElementById('content').value.trim();
+
+    if (title && content) {
+      const post = document.createElement('div');
+      post.className = 'post';
+      post.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
+
+      feed.prepend(post); // ajoute en haut du feed
+
+      form.reset(); // vide les champs
+    }
+  });

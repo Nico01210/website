@@ -287,3 +287,19 @@ button:hover {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+#feed .post {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#postForm {
+display: flex;
+margin-left: 470px;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
