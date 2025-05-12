@@ -303,3 +303,161 @@ margin-left: 470px;
   align-items: center;
 
 }
+#galerie {
+  display: flex;
+  height: 450px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px;
+  background: #eed;
+  border: 1px solid #dcb;
+  justify-content: center;
+  text-align: center;
+  font: 0.9em Georgia, serif;
+}
+
+
+ul#galerie_mini
+{
+  display: grid;
+  margin: 0 ;
+  padding: 0 ;
+  list-style-type: none ;
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+ul#galerie_mini li a img
+{
+  margin: 2px 1px ;
+  border: 1px solid 
+#dcb ;
+}
+
+dl#photo
+{
+  clear: both ;
+  margin: 0 auto ;
+}
+
+dl#photo dt
+{
+  font: italic 2.5em/1.5em Georgia, serif ;
+  color: 
+#dcb ;
+}
+
+dl#photo dd
+{
+  margin: 0 ;
+}
+
+dl#photo img
+{
+  border: 1px solid 
+#dcb ;
+}
+
+#galerie_mini li {
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+#galerie_mini li:hover {
+  transform: scale(1.05); /* Effet zoom au survol */
+}
+
+#galerie_mini img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #dcb;
+}
+#big_pict {
+  transition: opacity 0.4s ease;
+}
+
+#big_pict.fade-out {
+  opacity: 0;
+}
+#photo dt {
+  font: italic 2.5em/1.5em Georgia, serif;
+  color: #dcb;
+}
+
+#photo img {
+  border: 1px solid #dcb;
+  max-width: 100%;
+}
+#btn-retour {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0099cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btn-retour:hover {
+  background-color: #0077aa;
+}
+#form-ajout {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#form-ajout label {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#form-ajout input[type="file"],
+#form-ajout input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+#form-ajout input[type="file"] {
+  border: none;
+  padding: 5px;
+}
+
+#form-ajout button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#form-ajout button:hover {
+  background-color: #45a049;
+}
+
+#form-ajout button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#form-ajout input[type="text"] {
+  margin-bottom: 15px;
+}
