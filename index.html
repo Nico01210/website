@@ -1,194 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
-<html>
 
-  <head>
-    <meta charset="utf-8">
-<title>My Web Site</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-      .carte-meteo {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 20px;
-        max-width: 800px;
-        font-family: Arial, sans-serif;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-        text-align: center;
-        margin: 20px auto;
-        background-color: gray;
-      }
-      .carte-meteo img {
-        width: 600px;
-        height: 600px;
-      }
-      #resultat {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        margin-top: 20px;
-      }
-      body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    #feed {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-    .post {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .post h2 {
-      margin: 0 0 10px;
-    }
-    .post p {
-      margin: 0;
-    }
-    #refreshBtn {
-      padding: 10px, 20px;
-      font-weight: bold;
-      background: #0099cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 20px;
-    }
-    #refreshBtn:hover {
-      background: #0077aa;
-    }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>My Web Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-  <body>
-    <header>
-      <nav class="navbar">
-        <div class="nav-container">
-          <a href="index.html" class="logo">MonSite</a>
-          <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="Gallery.html">Gallery</a></li>
-            <li><a href="Jeux.html">Jeux</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">MonSite</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="Gallery.html">Gallery</a></li>
+          <li><a href="Jeux.html">Jeux</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-    <h1> Bienvenue </h1>
+  <h1>Bienvenue</h1>
 
-    <img src="images/dev.jpeg" alt="Photo de dev" width=50% height=600px />
-  
- 
-    <section>
-      <form id="postForm">
-        <input type="text" id="title" placeholder="Titre de l'article" required />
-        <br><br>
-        <textarea id="content" placeholder="Contenu de l'article" required></textarea>
-        <br><br>
-        <button type="submit">Publier</button>
-      </form>
-      <div class="conteneur-feed-meteo">
+  <img src="images/dev.jpeg" alt="Photo de dev" width="50%" height="600px" />
+
+  <section>
+    <form id="postForm">
+      <input type="text" id="title" placeholder="Titre de l'article" required />
+      <br><br>
+      <textarea id="content" placeholder="Contenu de l'article" required></textarea>
+      <br><br>
+      <button type="submit">Publier</button>
+    </form>
+
+    <h2>Mur de Posts</h2>
+    <div id="feed"></div>
+
+    <div class="conteneur-feed-meteo">
       <div class="container">
-        <h2>Mur de Posts</h2>
-        <br>
-        <button id="actualiserBtn">Actualiser</button>
-          <div id="feed"></div>
-          </div>
-
-          <div id="resultat">
-            <div class="carte-meteo">
-              <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Météo actuelle" />
-              <div class="meteo-inputs">
-                <input type="text" id="ville-input" placeholder="Entrez une ville" />
-                <button onclick="demanderMeteo()">Afficher la météo</button>
-              </div>
+        <div id="resultat">
+          <div class="carte-meteo">
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Météo actuelle" />
+            <div class="meteo-inputs">
+              <input type="text" id="ville-input" placeholder="Entrez une ville" />
+              <button onclick="demanderMeteo()">Afficher la météo</button>
             </div>
           </div>
-    
-        
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-      <section id="gallery">
-        <h1>Gallery</h1>
-        <br>
-        <br>
+  <section id="gallery">
+    <h1>Gallery</h1>
+    <div class="galerie-images">
+      <a href="Gallery.html" title="Campagne">
+        <img alt="Photo de campagne" src="images/campagne.jpg" />
+      </a>
+      <a href="Gallery.html" title="Montagne">
+        <img alt="Photo de Montagnes" src="images/montagne.jpeg" />
+      </a>
+      <a href="Gallery.html" title="Désert">
+        <img alt="Photo de Désert" src="images/sable.jpeg" />
+      </a>
+      <a href="Gallery.html" title="Plage">
+        <img alt="Photo de Plage" src="images/plage.jpeg" />
+      </a>
+    </div>
+  </section>
 
-        <div class="galerie-images">
-
-        <a href="Gallery.html" title="Campagne">
-          <img alt="Photo de campagne" src="/images/campagne.jpg" width=400px height=350px />
-        </a>
-        <a href="Gallery.html" title="Montagne">
-          <img alt="Photo de Montagnes" src="/images/montagne.jpeg" width=400px height=350px />
-        </a>
-        <a href="Gallery.html" title="Désert">
-          <img alt="Photo de Désert" src="/images/sable.jpeg" width=400px height=350px />
-        </a>
-        <a href="Gallery.html" title="Plage">
-          <img alt="Photo de Plage" src="/images/plage.jpeg" width=400px height=350px />
-        </a>
-       
+  <section id="jeux">
+    <h1>Jeux</h1>
+    <a title="Jeux">
+      <img alt="Photo de Jeux" src="images/jeux.jpg" width="800px" height="600px" />
       
-      
-      <section id="jeux">
-        <h1>Jeux</h1>
-        <br>
-        <br>
-        <a title="Jeux">
-          <img alt="Photo de Jeux" src="/images/jeux.jpg" width=800px height=600px />
-          <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="index.html">Index</a>
-              <a href="Gallery.html">Gallery</a>
-              <a href="Jeux.html">Jeux</a>
-            </div>
-          </div>
-        </section>
-
-      </section>
-
-  
-    <footer>
-      <div class="footer-container">
-        <div class="footer-block">
-          <h3>Nos services</h3>
-          <ul>
-            <li><a href="#">Création de sites</a></li>
-            <li><a href="#">SEO</a></li>
-            <li><a href="#">Maintenance</a></li>
-          </ul>
-        </div>
-  
-        <div class="footer-block">
-          <h3>À propos</h3>
-          <ul>
-            <li><a href="#">Notre équipe</a></li>
-            <li><a href="#">Notre vision</a></li>
-            <li><a href="#">Actualités</a></li>
-          </ul>
-        </div>
-  
-        <div class="footer-block">
-          <h3>Contact</h3>
-          <p>06 06 06 06 06</p>
-          <p>contact@monsite.com</p>
-          <p>12 rue de l'exemple, Paris</p>
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="index.html">Index</a>
+          <a href="Gallery.html">Gallery</a>
+          <a href="Jeux.html">Jeux</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        © 2025 MonSite. Tous droits réservés.
-      </div>
-    </footer>
-    <script src="script.js"></script>
+    </a>
+  </section>
 
-  </body>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-block">
+        <h3>Nos services</h3>
+        <ul>
+          <li><a href="#">Création de sites</a></li>
+          <li><a href="#">SEO</a></li>
+          <li><a href="#">Maintenance</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3>À propos</h3>
+        <ul>
+          <li><a href="#">Notre équipe</a></li>
+          <li><a href="#">Notre vision</a></li>
+          <li><a href="#">Actualités</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3>Contact</h3>
+        <p>06 06 06 06 06</p>
+        <p>contact@monsite.com</p>
+        <p>12 rue de l'exemple, Paris</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 MonSite. Tous droits réservés.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 
 </html>

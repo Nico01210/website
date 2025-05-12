@@ -1,105 +1,89 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-<title>My Web Site</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>My Web Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-  <body>
-    <header>
-        <nav class="navbar">
-          <div class="nav-container">
-            <a href="index.html" class="logo">MonSite</a>
-            <ul class="nav-links">
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="Gallery.html">Gallery</a></li>
-              <li><a href="Jeux.html">Jeux</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">MonSite</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="Gallery.html">Gallery</a></li>
+          <li><a href="Jeux.html">Jeux</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+<h2> Gallerie Photo</h2>
+  <div id="galerie">
+    <ul id="galerie_mini">
+      <li><a href="images/jungle.jpg" title="Jungle"><img src="images/jungle.jpg" alt="Jungle"></a></li>
+      <li><a href="images/plage.jpeg" title="Plage"><img src="images/plage.jpeg" alt="Plage"></a></li>
+      <li><a href="images/fleuve.jpg" title="Fleuve"><img src="images/fleuve.jpg" alt="Fleuve"></a></li>
+      <li><a href="images/neige.jpg" title="Neige"><img src="images/neige.jpg" alt="Neige"></a></li>
+      <li><a href="images/lave.jpg" title="Lave"><img src="images/lave.jpg" alt="Lave"></a></li>
+      <li><a href="images/sable.jpeg" title="Sable"><img src="images/sable.jpeg" alt="Sable"></a></li>
+      <li><a href="images/montagne.jpeg" title="Montagnes"><img src="images/montagne.jpeg" alt="Montagnes"></a></li>
+      <li><a href="images/campagne.jpg" title="Campagne"><img src="images/campagne.jpg" alt="Campagne"></a></li>
+    </ul>
 
+    <dl id="photo" style="display: none;">
+      <dt id="photo-title">Photo de l'Amazonie</dt>
+      <dd><img id="big_pict" src="images/jungle.jpg" alt="Photo 1 en taille normale" /></dd>
+      <button id="btn-retour">Retour à la galerie</button>
+    </dl>
+  </div>
 
+  <form id="photoForm">
+    <label for="image">Ajoutez une image :</label>
+    <input type="file" id="image" name="image" accept="image/*" required>
 
-      <div id="galerie">
-        <ul id="galerie_mini">
-          <li>
-            <a href="images/jungle.jpg" title="Titre de la photo 1"><img src="images/jungle.jpg" alt="Jungle" /></a>    </li>
-          <li>
-            <a href="images/plage.jpeg" title="Titre de la photo 2"><img src="images/plage.jpeg" alt="Plage" /></a>    </li>
-          <li>
-            <a href="images/fleuve.jpg" title="Titre de la photo 3"><img src="images/fleuve.jpg" alt="Fleuve" /></a>    </li>
-          <li>
-            <a href="images/neige.jpg" title="Titre de la photo 4"><img src="images/neige.jpg" alt="Neige" /></a>    </li>
-          <li>
-            <a href="image/lave.jpg" title="Titre de la photo 5"><img src="images/lave.jpg" alt="Lave" /></a>    </li>
-          <li>
-            <a href="images/sable.jpeg" title="Titre de la photo 6"><img src="images/sable.jpeg" alt="Sable" /></a>    </li>
-          <li>
-            <a href="images/montagne.jpeg" title="Titre de la photo 7"><img src="images/montagne.jpeg" alt="Montagnes" /></a>    </li>
-          <li>
-            <a href="images/campagne.jpg" title="Titre de la photo 8"><img src="images/campagne.jpg" alt="Campagne" /></a>    </li>
-      </ul>
-      
-        <dl id="photo">
-          <dt>Photo de l'Amazonie</dt>
-          <dd><img id="big_pict" src="images/jungle.jpg" alt="Photo 1 en taille normale" /> </dd>
-          <button id="btn-retour">Retour à la galerie</button>
+    <label for="titre">Titre de l'image :</label>
+    <input type="text" id="titre" name="titre" placeholder="Titre de l'image" required>
 
-        </dl>
-        </div>
+    <button type="submit">Ajoutez à la galerie</button>
+  </form>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-block">
+        <h3>Nos services</h3>
+        <ul>
+          <li><a href="#">Création de sites</a></li>
+          <li><a href="#">SEO</a></li>
+          <li><a href="#">Maintenance</a></li>
+        </ul>
       </div>
 
-      <form id="form-ajout">
-        <label for="image">Ajoutez une image :</label>
-        <input type="file" id="image" name="image" accept="image/*" required>
-      
-        <label for="titre">Titre de l'image :</label>
-        <input type="text" id="titre" name="titre" placeholder="Titre de l'image" required>
-      
-        <button type="submit">Ajoutez à la galerie</button>
-      </form>
+      <div class="footer-block">
+        <h3>À propos</h3>
+        <ul>
+          <li><a href="#">Notre équipe</a></li>
+          <li><a href="#">Notre vision</a></li>
+          <li><a href="#">Actualités</a></li>
+        </ul>
+      </div>
 
-    <footer>
-        <div class="footer-container">
-          <div class="footer-block">
-            <h3>Nos services</h3>
-            <ul>
-              <li><a href="#">Création de sites</a></li>
-              <li><a href="#">SEO</a></li>
-              <li><a href="#">Maintenance</a></li>
-            </ul>
-          </div>
-    
-          <div class="footer-block">
-            <h3>À propos</h3>
-            <ul>
-              <li><a href="#">Notre équipe</a></li>
-              <li><a href="#">Notre vision</a></li>
-              <li><a href="#">Actualités</a></li>
-            </ul>
-          </div>
-    
-          <div class="footer-block">
-            <h3>Contact</h3>
-            <p>06 06 06 06 06</p>
-            <p>contact@monsite.com</p>
-            <p>12 rue de l'exemple, Paris</p>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          © 2025 MonSite. Tous droits réservés.
-        </div>
-      </footer>
+      <div class="footer-block">
+        <h3>Contact</h3>
+        <p>06 06 06 06 06</p>
+        <p>contact@monsite.com</p>
+        <p>12 rue de l'exemple, Paris</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 MonSite. Tous droits réservés.
+    </div>
+  </footer>
 
-
-      <script src="script.js"></script>
-
-  </body>
+  <script src="script.js"></script>
+</body>
 
 </html>
