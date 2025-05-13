@@ -126,3 +126,87 @@ document.addEventListener("DOMContentLoaded", () => {
     marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
   }
 });
+const board = document.getElementById('game-board');
+let flippedCards = [];
+let matchedCards = [];
+
+async function fetchRandomPokemon(count = 6) {
+  const ids = [];
+  while (ids.length < count) {
+    const id = Math.floor(Math.random() * 150) + 1; // first-gen
+    if (!ids.includes(id)) ids.push(id);
+  }
+
+  const promises = ids.map(id =>
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json())
+  );
+
+  const pokemons = await Promise.all(promises);
+  return pokemons.map(p => ({
+    id: p.id,
+    name: p.name,
+    image: p.sprites.front_default
+  }));
+}
+
+function createCard(pokemon) {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.dataset.id = pokemon.id;
+
+  const img = document.createElement('img');
+  img.src = pokemon.image;
+  img.alt = pokemon.name;
+
+  card.appendChild(img);
+
+  card.addEventListener('click', () => handleCardClick(card));
+
+  return card;
+}
+
+function handleCardClick(card) {
+  if (
+    flippedCards.length >= 2 ||
+    flippedCards.includes(card) ||
+    card.classList.contains('matched')
+  ) return;
+
+  card.classList.add('flipped');
+  flippedCards.push(card);
+
+  if (flippedCards.length === 2) {
+    const [first, second] = flippedCards;
+    const firstId = first.dataset.id;
+    const secondId = second.dataset.id;
+
+    if (firstId === secondId) {
+      first.classList.add('matched');
+      second.classList.add('matched');
+      matchedCards.push(firstId);
+      flippedCards = [];
+
+      if (matchedCards.length === 6) {
+        setTimeout(() => alert("Bravo ! Tu as gagné !"), 300);
+      }
+    } else {
+      setTimeout(() => {
+        first.classList.remove('flipped');
+        second.classList.remove('flipped');
+        flippedCards = [];
+      }, 1000);
+    }
+  }
+}
+
+async function setupGame() {
+  const pokemons = await fetchRandomPokemon(6);
+  const cardsData = [...pokemons, ...pokemons].sort(() => Math.random() - 0.5);
+
+  cardsData.forEach(pokemon => {
+    const card = createCard(pokemon);
+    board.appendChild(card);
+  });
+}
+
+setupGame();

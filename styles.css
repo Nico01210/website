@@ -521,6 +521,36 @@ button:hover {
   }
   .marquee:before, .marquee:after { width: 5rem; }
 }
-#imageJeux {
-  padding-top: 80px;
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 60px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background: #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+
+.card.flipped img {
+  display: block;
+}
+
+.card.flipped {
+  background: #fff;
 }
