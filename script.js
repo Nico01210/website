@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
+  // === GESTION FORMULAIRE PHOTO ===
   const formPhoto = document.getElementById('photoForm');
   const galerieMini = document.getElementById("galerie_mini");
   const photo = document.getElementById("photo");
@@ -9,7 +10,6 @@ window.addEventListener('DOMContentLoaded', () => {
   if (formPhoto) {
     formPhoto.addEventListener('submit', function (e) {
       e.preventDefault();
-
       const imageFile = document.getElementById('image').files[0];
       const titre = document.getElementById('titre').value.trim();
 
@@ -36,8 +36,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const liElement = document.createElement('li');
       liElement.appendChild(linkElement);
-
       galerieMini.appendChild(liElement);
+
       formPhoto.reset();
     });
   }
@@ -52,16 +52,14 @@ window.addEventListener('DOMContentLoaded', () => {
         const titre = target.alt || "Photo";
         bigPict.src = grandeImage;
         photoTitle.textContent = titre;
-        galerieMini.classList.add("hidden");
+        galerieMini.style.display = "none";
         photo.style.display = "block";
       }
 
       if (target.classList.contains('delete-btn')) {
         e.preventDefault();
         const li = target.closest("li");
-        if (li) {
-          li.remove();
-        }
+        if (li) li.remove();
       }
     });
   }
@@ -75,7 +73,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // === GESTION FORMULAIRE ARTICLE ===
   const postForm = document.getElementById('postForm');
-  const feed = document.getElementById('feed'); // 🟢 le bon conteneur pour afficher les articles
+  const feed = document.getElementById('feed');
 
   if (postForm && feed) {
     postForm.addEventListener('submit', function (e) {
@@ -98,115 +96,132 @@ window.addEventListener('DOMContentLoaded', () => {
 
       article.appendChild(h3);
       article.appendChild(p);
-
-      // Ajouter l'article EN DESSOUS (ou utilise prepend si tu veux l'avoir en haut)
       feed.appendChild(article);
 
       postForm.reset();
     });
   }
-});
-// DropDown //
-function myFunction() {
-  const dropdownContent = document.getElementById("myDropdown");
-  dropdownContent.classList.toggle("show");
-}
-document.addEventListener("DOMContentLoaded", () => {
+
+  // === GESTION MARQUEE ===
   const root = document.documentElement;
   const marqueeContent = document.querySelector("ul.marquee-content");
 
-  const displayed = parseInt(getComputedStyle(root).getPropertyValue("--marquee-elements-displayed"), 10);
-  const totalElements = marqueeContent.children.length;
-
-  // Définir dynamiquement le nombre d'éléments
-  root.style.setProperty("--marquee-elements", totalElements);
-
-  // Cloner les premiers éléments pour effet infini
-  for (let i = 0; i < displayed; i++) {
-    marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-  }
-});
-const board = document.getElementById('game-board');
-let flippedCards = [];
-let matchedCards = [];
-
-async function fetchRandomPokemon(count = 6) {
-  const ids = [];
-  while (ids.length < count) {
-    const id = Math.floor(Math.random() * 150) + 1; // first-gen
-    if (!ids.includes(id)) ids.push(id);
+  if (marqueeContent) {
+    const totalElements = marqueeContent.children.length;
+    root.style.setProperty("--marquee-elements", totalElements);
   }
 
-  const promises = ids.map(id =>
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json())
-  );
+  // === MEMORY GAME (POKEMON) ===
+  const board = document.getElementById('game-board');
+  const difficultySelect = document.getElementById('difficulty');
 
-  const pokemons = await Promise.all(promises);
-  return pokemons.map(p => ({
-    id: p.id,
-    name: p.name,
-    image: p.sprites.front_default
-  }));
-}
+  let flippedCards = [];
+  let matchedCards = [];
 
-function createCard(pokemon) {
-  const card = document.createElement('div');
-  card.classList.add('card');
-  card.dataset.id = pokemon.id;
+  async function fetchRandomPokemon(pairCount) {
+    const ids = new Set();
+    while (ids.size < pairCount) {
+      const id = Math.floor(Math.random() * 150) + 1;
+      ids.add(id);
+    }
 
-  const img = document.createElement('img');
-  img.src = pokemon.image;
-  img.alt = pokemon.name;
+    const promises = [...ids].map(id =>
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json())
+    );
 
-  card.appendChild(img);
+    const pokemons = await Promise.all(promises);
+    return pokemons.map(p => ({
+      id: p.id,
+      name: p.name,
+      image: p.sprites.front_default
+    }));
+  }
 
-  card.addEventListener('click', () => handleCardClick(card));
+  function createCard(pokemon) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.id = pokemon.id;
 
-  return card;
-}
+    const img = document.createElement('img');
+    img.src = pokemon.image;
+    img.alt = pokemon.name;
 
-function handleCardClick(card) {
-  if (
-    flippedCards.length >= 2 ||
-    flippedCards.includes(card) ||
-    card.classList.contains('matched')
-  ) return;
+    card.appendChild(img);
+    card.addEventListener('click', () => handleCardClick(card));
+    return card;
+  }
 
-  card.classList.add('flipped');
-  flippedCards.push(card);
+  function handleCardClick(card) {
+    if (
+      flippedCards.length >= 2 ||
+      flippedCards.includes(card) ||
+      card.classList.contains('matched')
+    ) return;
 
-  if (flippedCards.length === 2) {
-    const [first, second] = flippedCards;
-    const firstId = first.dataset.id;
-    const secondId = second.dataset.id;
+    card.classList.add('flipped');
+    flippedCards.push(card);
 
-    if (firstId === secondId) {
-      first.classList.add('matched');
-      second.classList.add('matched');
-      matchedCards.push(firstId);
-      flippedCards = [];
+    if (flippedCards.length === 2) {
+      const [first, second] = flippedCards;
+      const firstId = first.dataset.id;
+      const secondId = second.dataset.id;
 
-      if (matchedCards.length === 6) {
-        setTimeout(() => alert("Bravo ! Tu as gagné !"), 300);
-      }
-    } else {
-      setTimeout(() => {
-        first.classList.remove('flipped');
-        second.classList.remove('flipped');
+      if (firstId === secondId) {
+        first.classList.add('matched');
+        second.classList.add('matched');
+        matchedCards.push(firstId);
         flippedCards = [];
-      }, 1000);
+
+        if (matchedCards.length === parseInt(difficultySelect.value)) {
+          setTimeout(() => alert("Bravo ! Tu as gagné !"), 300);
+        }
+      } else {
+        setTimeout(() => {
+          first.classList.remove('flipped');
+          second.classList.remove('flipped');
+          flippedCards = [];
+        }, 1000);
+      }
     }
   }
+
+  async function setupGame() {
+    board.innerHTML = '';
+    flippedCards = [];
+    matchedCards = [];
+
+    const pairCount = parseInt(difficultySelect.value);
+    const pokemons = await fetchRandomPokemon(pairCount);
+    const cardsData = [...pokemons, ...pokemons].sort(() => Math.random() - 0.5);
+
+    cardsData.forEach(pokemon => {
+      const card = createCard(pokemon);
+      board.appendChild(card);
+    });
+
+    adjustGridLayout(pairCount);
+  }
+
+  function adjustGridLayout(pairCount) {
+    const totalCards = pairCount * 2;
+
+    if (totalCards <= 10) {
+      board.style.gridTemplateColumns = 'repeat(4, 100px)';
+    } else if (totalCards <= 30) {
+      board.style.gridTemplateColumns = 'repeat(6, 100px)';
+    } else {
+      board.style.gridTemplateColumns = 'repeat(8, 100px)';
+    }
+  }
+
+  if (difficultySelect) {
+    difficultySelect.addEventListener('change', setupGame);
+    setupGame();
+  }
+});
+
+// === DropDown simple ===
+function myFunction() {
+  const dropdownContent = document.getElementById("myDropdown");
+  dropdownContent?.classList.toggle("show");
 }
-
-async function setupGame() {
-  const pokemons = await fetchRandomPokemon(6);
-  const cardsData = [...pokemons, ...pokemons].sort(() => Math.random() - 0.5);
-
-  cardsData.forEach(pokemon => {
-    const card = createCard(pokemon);
-    board.appendChild(card);
-  });
-}
-
-setupGame();

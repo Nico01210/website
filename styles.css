@@ -554,3 +554,6 @@ button:hover {
 .card.flipped {
   background: #fff;
 }
+#difficulty {
+  width: 200px;
+}
