@@ -111,3 +111,18 @@ function myFunction() {
   const dropdownContent = document.getElementById("myDropdown");
   dropdownContent.classList.toggle("show");
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.documentElement;
+  const marqueeContent = document.querySelector("ul.marquee-content");
+
+  const displayed = parseInt(getComputedStyle(root).getPropertyValue("--marquee-elements-displayed"), 10);
+  const totalElements = marqueeContent.children.length;
+
+  // Définir dynamiquement le nombre d'éléments
+  root.style.setProperty("--marquee-elements", totalElements);
+
+  // Cloner les premiers éléments pour effet infini
+  for (let i = 0; i < displayed; i++) {
+    marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+  }
+});
