@@ -287,6 +287,27 @@ ul#galerie_mini {
   gap: 20px;
   align-items: center;
 }
+#feed article {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+#feed article h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+#feed article p {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #555;
+}
 
 .post {
   background: white;

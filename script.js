@@ -6,60 +6,103 @@ window.addEventListener('DOMContentLoaded', () => {
   const photoTitle = document.getElementById("photo-title");
   const btnRetour = document.getElementById("btn-retour");
 
-  // Gestion du formulaire
-  formPhoto.addEventListener('submit', function (e) {
-    e.preventDefault(); // Empêche le rechargement de la page
+  if (formPhoto) {
+    formPhoto.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    const imageFile = document.getElementById('image').files[0]; // Récupère le fichier image
-    const titre = document.getElementById('titre').value.trim(); // Récupère le titre de l'image
+      const imageFile = document.getElementById('image').files[0];
+      const titre = document.getElementById('titre').value.trim();
 
-    // Vérifie si les champs sont remplis
-    if (!imageFile || !titre) {
-      alert("Veuillez remplir tous les champs !");
-      return;
-    }
+      if (!imageFile || !titre) {
+        alert("Veuillez remplir tous les champs !");
+        return;
+      }
 
-    // Créer une URL temporaire pour l'image
-    const imageURL = URL.createObjectURL(imageFile);
-    const imageElement = document.createElement('img');
-    imageElement.src = imageURL;
-    imageElement.alt = titre;
-    imageElement.title = titre;
+      const imageURL = URL.createObjectURL(imageFile);
+      const imageElement = document.createElement('img');
+      imageElement.src = imageURL;
+      imageElement.alt = titre;
+      imageElement.title = titre;
 
-    // Créer un nouvel élément <li> pour l'image
-    const liElement = document.createElement('li');
-    const linkElement = document.createElement('a');
-    linkElement.href = imageURL; // Lien vers l'image en taille réelle
-    linkElement.title = titre;
-    linkElement.appendChild(imageElement);
-    liElement.appendChild(linkElement);
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = "Supprimer";
+      deleteButton.className = "delete-btn";
 
-    // Ajouter l'image à la galerie
-    galerieMini.appendChild(liElement);
+      const linkElement = document.createElement('a');
+      linkElement.href = imageURL;
+      linkElement.title = titre;
+      linkElement.appendChild(imageElement);
+      linkElement.appendChild(deleteButton);
 
-    // Réinitialiser le formulaire
-    formPhoto.reset();
-  });
+      const liElement = document.createElement('li');
+      liElement.appendChild(linkElement);
 
-  // Gestion de l'affichage de la grande image
-  galerieMini.addEventListener('click', (e) => {
-    if (e.target.tagName === 'IMG') {
-      const grandeImage = e.target.parentElement.getAttribute("href");
-      const titre = e.target.alt || "Photo";
+      galerieMini.appendChild(liElement);
+      formPhoto.reset();
+    });
+  }
 
-      // Affichage de la grande image
-      bigPict.src = grandeImage;
-      photoTitle.textContent = titre;
+  if (galerieMini) {
+    galerieMini.addEventListener('click', (e) => {
+      const target = e.target;
 
-      // Cacher les miniatures et afficher la grande image
-      galerieMini.style.display = "none";
-      photo.style.display = "block";
-    }
-  });
+      if (target.tagName === 'IMG') {
+        e.preventDefault();
+        const grandeImage = target.parentElement.getAttribute("href");
+        const titre = target.alt || "Photo";
+        bigPict.src = grandeImage;
+        photoTitle.textContent = titre;
+        galerieMini.classList.add("hidden");
+        photo.style.display = "block";
+      }
 
-  // Bouton retour pour revenir aux miniatures
-  btnRetour.addEventListener("click", () => {
-    photo.style.display = "none";
-    galerieMini.style.display = "grid";
-  });
+      if (target.classList.contains('delete-btn')) {
+        e.preventDefault();
+        const li = target.closest("li");
+        if (li) {
+          li.remove();
+        }
+      }
+    });
+  }
+
+  if (btnRetour && photo && galerieMini) {
+    btnRetour.addEventListener("click", () => {
+      photo.style.display = "none";
+      galerieMini.style.display = "grid";
+    });
+  }
+
+  // === GESTION FORMULAIRE ARTICLE ===
+  const postForm = document.getElementById('postForm');
+  const feed = document.getElementById('feed'); // 🟢 le bon conteneur pour afficher les articles
+
+  if (postForm && feed) {
+    postForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+
+      if (!title || !content) {
+        alert("Veuillez remplir tous les champs !");
+        return;
+      }
+
+      const article = document.createElement('article');
+      const h3 = document.createElement('h3');
+      const p = document.createElement('p');
+
+      h3.textContent = title;
+      p.textContent = content;
+
+      article.appendChild(h3);
+      article.appendChild(p);
+
+      // Ajouter l'article EN DESSOUS (ou utilise prepend si tu veux l'avoir en haut)
+      feed.appendChild(article);
+
+      postForm.reset();
+    });
+  }
 });
