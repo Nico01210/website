@@ -1,7 +1,9 @@
 /* === GLOBAL === */
 html, body {
   height: 100%;
+  width: 100%;
   margin: 0;
+  padding: 0;
   padding-top: 40px;
   font-family: Arial, sans-serif;
   display: flex;
@@ -96,6 +98,9 @@ footer {
   padding: 0;
   background-color: #222;
   color: #fff;
+  position: relative;
+  left: 0;
+  right: 0;
   
 }
 
@@ -103,8 +108,10 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 1200px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .footer-block {
@@ -370,7 +377,7 @@ ul#galerie_mini {
   position: relative;
   display: flex;
   justify-content: flex-end;
-  padding: 20px;
+  padding: 60px;
 }
 
 .dropdown-content {

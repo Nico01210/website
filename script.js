@@ -106,3 +106,8 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+// DropDown //
+function myFunction() {
+  const dropdownContent = document.getElementById("myDropdown");
+  dropdownContent.classList.toggle("show");
+}
