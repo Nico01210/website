@@ -196,6 +196,7 @@ ul#galerie_mini {
   width: 100%;
   display: block;
   border: 1px solid #dcb;
+  cursor: pointer;
 }
 
 #photo dt {
@@ -367,4 +368,42 @@ ul#galerie_mini {
 
 .show {
   display: block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  justify-content: center;
+  text-align: center;
+}
+
+input[type="text"],
+textarea {
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
 }
