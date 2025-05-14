@@ -456,13 +456,13 @@ button:hover {
 }
 
 .marquee {
-  width: 100%;
+  width: 100vw;
   height: var(--marquee-height);
   background-color: #111;
   color: #eee;
   overflow: hidden;
   position: relative;
-  padding: 80px;
+  padding: 8px;
 }
 .marquee:before, .marquee:after {
   position: absolute;
@@ -570,4 +570,13 @@ button:hover {
   background-color: #f9f9f9;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin: 20px;
+}
+.game-info {
+  max-width: 400px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  background-color: #e0f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 16px;
 }
