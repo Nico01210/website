@@ -164,7 +164,73 @@ window.addEventListener('DOMContentLoaded', () => {
       dropdownContent?.classList.toggle("show");
     });
   }
+    // === Gestion des posts/feed ===
+    const postForm = document.getElementById('postForm');
+    const feed = document.getElementById('feed');
+  
+    if (postForm && feed) {
+      postForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        const article = document.createElement('article');
+        article.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+        feed.prepend(article);
+        postForm.reset();
+      });
+    }
 
-  // === Les autres blocs (photo, articles, etc.) ===
-  // (conservés tels quels, comme dans ton code précédent)
+      // === Galerie dynamique ===
+  const photoForm = document.getElementById('photoForm');
+  const galerieMini = document.getElementById('galerie_mini');
+
+  if (photoForm && galerieMini) {
+    photoForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fileInput = document.getElementById('image');
+      const titleInput = document.getElementById('titre');
+      const file = fileInput.files[0];
+      const title = titleInput.value;
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <a href="#" class="miniature" data-img="${event.target.result}" data-title="${title}">
+              <img src="${event.target.result}" alt="${title}">
+            </a>
+            <button class="delete-btn">Supprimer</button>
+          `;
+          galerieMini.appendChild(li);
+          photoForm.reset();
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    galerieMini.addEventListener('click', function(e) {
+      // Supprimer une image
+      if (e.target.classList.contains('delete-btn')) {
+        e.preventDefault();
+        const li = e.target.closest('li');
+        if (li) li.remove();
+        return;
+      }
+      // Afficher la grande photo
+      const miniature = e.target.closest('.miniature');
+      if (miniature) {
+        e.preventDefault();
+        const bigPict = document.getElementById('big_pict');
+        const photoTitle = document.getElementById('photo-title');
+        const photoBlock = document.getElementById('photo');
+        if (bigPict && photoTitle && photoBlock) {
+          bigPict.src = miniature.dataset.img;
+          bigPict.alt = miniature.dataset.title;
+          photoTitle.textContent = miniature.dataset.title;
+          photoBlock.style.display = 'block';
+        }
+      }
+    });
+  }
 });
