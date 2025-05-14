@@ -1,4 +1,4 @@
-# Mon Premier Site Internet 🌐
+# Mon Premier Site Internet Vitrine 🌐
 
 Bienvenue sur mon tout premier site web ! Ce projet représente mes débuts dans le développement web. Il a été réalisé dans le but d’apprendre à créer et organiser un site simple, structuré en plusieurs pages.
 
